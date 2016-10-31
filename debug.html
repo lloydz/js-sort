@@ -1,0 +1,22 @@
+<script type="text/javascript" src="sort.js"></script>
+<script type="text/javascript">
+	function getRandomNum(min, max) {
+	    var range = max - min;
+	    var rand = Math.random();
+	    return (min + Math.round(rand * range));
+	}
+
+	var length = getRandomNum(5, 10);
+
+	var arr = [];
+
+	for (let i = 0; i < length; i++) {
+	    arr.push(getRandomNum(0, 100));
+	}
+
+	console.log('Original Array: ' + arr);
+
+	arr = jsSort.bubble(arr);
+
+	console.log('after bubble sorted: ' + arr);
+</script>
