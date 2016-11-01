@@ -1,9 +1,19 @@
 <script type="text/javascript" src="sort.js"></script>
 <script type="text/javascript">
+	// 生成随机数
 	function getRandomNum(min, max) {
 	    var range = max - min;
 	    var rand = Math.random();
 	    return (min + Math.round(rand * range));
+	}
+
+	// 克隆数组
+	function cloneArray(arr) {
+	    if (!Array.isArray(arr)) {
+	        return arr;
+	    }
+
+	    return arr.slice(0)
 	}
 
 	var length = getRandomNum(5, 10);
@@ -14,14 +24,19 @@
 	    arr.push(getRandomNum(0, 100));
 	}
 
-	console.log('Original Array: ' + arr);
+	console.log('        Original Array: ' + arr);
 
-	arr = jsSort.bubble(arr);
-	console.log('   after bubble sorted: ' + arr);
+	console.time('bubble');
+	arr1 = jsSort.bubble(cloneArray(arr));
+	console.log('   after bubble sorted: ' + arr1, ';time: ' + console.timeEnd('bubble'));
 
-	arr = jsSort.selection(arr);
-	console.log('after selection sorted: ' + arr);
+	console.time('selection');
+	arr2 = jsSort.selection(cloneArray(arr));
+	console.log('after selection sorted: ' + arr2, ';time: ' + console.timeEnd('selection'));
 
-	arr = jsSort.selection(arr);
-	console.log('    after quick sorted: ' + arr);
+	console.time('quick');
+	arr3 = jsSort.quick(cloneArray(arr));
+	console.log('    after quick sorted: ' + arr3, ';time: ' + console.timeEnd('quick'));
+
+	console.log('        Original Array: ' + arr);
 </script>

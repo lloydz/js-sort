@@ -1,4 +1,4 @@
-/* js-sort
+﻿/* js-sort
  * javascript实现各种排序算法
  * 
  * lloydz
@@ -38,7 +38,7 @@
                 let min = arr[i],
                     minIndex = i;
 
-                for (let j = i; j < length - 1; j++) {
+                for (let j = i; j < length; j++) {
                     if (arr[j] < min) {
                         min = arr[j];
                         minIndex = j;
@@ -63,13 +63,16 @@
 
             var length = arr.length;
 
-            if (length == 1) {
+            // 左右哨兵
+            left = (left != undefined) ? left : 0;
+            right = (right != undefined) ? right : length - 1;
+
+            var i = left;
+            var j = right;
+
+            if (left >= right) {
                 return arr;
             }
-
-            // 左右哨兵
-            left = left || 0;
-            right = right || length - 1;
 
             // 基准下标和值
             var baseIndex = left;
@@ -81,6 +84,8 @@
                         let tmp = arr[left];
                         arr[left] = arr[right];
                         arr[right] = tmp;
+
+                        right--;
                     } else {
                         left++;
                     }
@@ -93,7 +98,7 @@
             arr[left] = base;
 
             this.quick(arr, 0, left - 1);
-            this.quick(arr, left + 1, right);
+            this.quick(arr, left + 1, j);
 
             return arr;
         }
