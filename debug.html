@@ -17,6 +17,11 @@
 	console.log('Original Array: ' + arr);
 
 	arr = jsSort.bubble(arr);
+	console.log('   after bubble sorted: ' + arr);
 
-	console.log('after bubble sorted: ' + arr);
+	arr = jsSort.selection(arr);
+	console.log('after selection sorted: ' + arr);
+
+	arr = jsSort.selection(arr);
+	console.log('    after quick sorted: ' + arr);
 </script>
