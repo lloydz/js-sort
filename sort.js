@@ -63,42 +63,42 @@
 
             var length = arr.length;
 
-            // 左右哨兵
             left = (left != undefined) ? left : 0;
             right = (right != undefined) ? right : length - 1;
-
-            var i = left;
-            var j = right;
 
             if (left >= right) {
                 return arr;
             }
 
+            // 左右哨兵
+            var i = left;
+            var j = right;
+
             // 基准下标和值
-            var baseIndex = left;
+            var baseIndex = i;
             var base = arr[baseIndex];
 
-            while (left < right) {
-                if (arr[right] < base) {
-                    if (arr[left] > base) {
-                        let tmp = arr[left];
-                        arr[left] = arr[right];
-                        arr[right] = tmp;
+            while (i < j) {
+                if (arr[j] < base) {
+                    if (arr[i] > base) {
+                        let tmp = arr[i];
+                        arr[i] = arr[j];
+                        arr[j] = tmp;
 
-                        right--;
+                        j--;
                     } else {
-                        left++;
+                        i++;
                     }
                 } else {
-                    right--;
+                    j--;
                 }
             }
 
-            arr[baseIndex] = arr[left];
-            arr[left] = base;
+            arr[baseIndex] = arr[i];
+            arr[i] = base;
 
-            this.quick(arr, 0, left - 1);
-            this.quick(arr, left + 1, j);
+            this.quick(arr, left, i - 1);
+            this.quick(arr, i + 1, right);
 
             return arr;
         }
